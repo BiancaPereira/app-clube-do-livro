@@ -14,11 +14,11 @@ async def promo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         try:
             affiliate_link = generate_affiliate_link(promo_link)
             info = scrap_book_info(promo_link)
-            summary = generate_ai_summary(info['title'])
+            summary = generate_ai_summary(info['title'], info['writer'])
             await context.bot.send_message(
                 chat_id=update.effective_chat.id,
                 parse_mode='Markdown',
-                text=f"`#promo 🔻 | **{info['title']}**\n💵 R${info['price']}\n\n📖 {summary}\n\n👉 {affiliate_link}`"
+                text=f"`#promo 🔻 | **{info['title']}**\n💵 R${info['price']}\n\n📖 {summary}\n👉 {affiliate_link}`"
             )
         except Exception as e:
             await context.bot.send_message(
@@ -33,11 +33,11 @@ async def gratis(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         try:
             affiliate_link = generate_affiliate_link(promo_link)
             info = scrap_book_info(promo_link)
-            summary = generate_ai_summary(info['title'])
+            summary = generate_ai_summary(info['title'], info['writer'])
             await context.bot.send_message(
                 chat_id=update.effective_chat.id,
                 parse_mode='Markdown',
-                text=f"`#gratis 🆓 | **{info['title']}**\n\n📖 {summary}\n\n👉 {affiliate_link}`"
+                text=f"`#gratis 🆓 | **{info['title']}**\n\n📖 {summary}\n👉 {affiliate_link}`"
             )
         except Exception as e:
             await context.bot.send_message(

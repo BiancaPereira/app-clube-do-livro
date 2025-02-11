@@ -30,6 +30,13 @@ def scrap_book_info(url: str) -> dict:
         except NoSuchElementException:
             price = 'Erro preço'
 
+        # Escritor
+        try:
+            writer_element = driver.find_element(By.CSS_SELECTOR, ".singleAuthorSection>div>div>div>div:nth-child(2)>div>a>h2")
+            writer = writer_element.text
+        except NoSuchElementException:
+            writer = 'Erro escritor'
+
         # ASIN ou ISBN-10 (número de identificação do produto)
         try:
             asin_element = driver.find_element(By.XPATH, "//span[@class='a-list-item' and contains (.,'ASIN')]//span[2]")
@@ -41,7 +48,7 @@ def scrap_book_info(url: str) -> dict:
             except NoSuchElementException:
                 asin = 'Erro ASIN/ISBN-10'
 
-    return {'asin': asin, 'title': title, 'price': price}
+    return {'asin': asin, 'title': title, 'price': price, 'writer': writer}
 
 def generate_affiliate_link(url: str) -> str:
     """
