@@ -35,7 +35,7 @@ async def promo(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await context.bot.send_message(
             chat_id=update.effective_chat.id,
             parse_mode='Markdown',
-            text=f"`#promo 🔻 | **{info['title']}** por R${info['price']}\n\n👉 {info['clean_url']}`")
+            text=f"`#promo 🔻 | **{info['title']}**\n💵 R${info['price']}\n\n👉 {info['clean_url']}`")
         
 async def gratis(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if update.message.text:
