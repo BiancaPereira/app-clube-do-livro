@@ -35,7 +35,16 @@ async def promo(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await context.bot.send_message(
             chat_id=update.effective_chat.id,
             parse_mode='Markdown',
-            text=f"#promo | *{info['title']}* por R${info['price']}\n\n👉 {info['clean_url']}")
+            text=f"`#promo 🔻 | **{info['title']}** por R${info['price']}\n\n👉 {info['clean_url']}`")
+        
+async def gratis(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update.message.text:
+        promo_link = update.message.text.replace('/gratis ', '', 1)
+        info = scrap_info(promo_link)
+        await context.bot.send_message(
+            chat_id=update.effective_chat.id,
+            parse_mode='Markdown',
+            text=f"`#gratis 😍 | **{info['title']}** \n\n👉 {info['clean_url']}`")
 
 def get_book_metadata(url: str) -> dict:
     driver = webdriver.Chrome()  # or use the appropriate WebDriver for your browser
@@ -79,6 +88,10 @@ def main() -> None:
     # Comando promo
     promo_handler = CommandHandler('promo', promo)
     application.add_handler(promo_handler)
+
+    # Comando gratis
+    gratis_handler = CommandHandler('gratis', gratis)
+    application.add_handler(gratis_handler)
     
     application.run_polling()
 
