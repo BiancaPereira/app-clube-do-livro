@@ -32,7 +32,7 @@ def scrap_book_info(url: str) -> dict:
 
         # Escritor
         try:
-            writer_element = driver.find_element(By.CSS_SELECTOR, ".singleAuthorSection>div>div>div>div:nth-child(2)>div>a>h2")
+            writer_element = driver.find_element(By.CSS_SELECTOR, ".author.notFaded a")
             writer = writer_element.text
         except NoSuchElementException:
             writer = 'Erro escritor'
