@@ -1,7 +1,7 @@
 import logging
 import os
 
-from telegram.ext import ApplicationBuilder, CommandHandler
+from telegram.ext import Application, CommandHandler
 
 from dotenv import load_dotenv
 
@@ -16,8 +16,8 @@ logging.basicConfig(
 )
 
 def main() -> None:
-    token = os.getenv('TOKEN')
-    application = ApplicationBuilder().token(token).build()
+    token = os.getenv('TELEGRAM_TOKEN')
+    application = Application.builder().token(token).build()
     
     # Comando start
     start_handler = CommandHandler('start', start)
