@@ -14,7 +14,7 @@ async def promo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         try:
             affiliate_link = generate_affiliate_link(promo_link)
             info = scrap_book_info(promo_link)
-            summary = generate_ai_summary(info['title'], info['writer'])
+            summary = generate_ai_summary(info['resume'], info['title'], info['writer'])
             await context.bot.send_message(
                 chat_id=update.effective_chat.id,
                 parse_mode='Markdown',
@@ -33,7 +33,7 @@ async def gratis(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         try:
             affiliate_link = generate_affiliate_link(promo_link)
             info = scrap_book_info(promo_link)
-            summary = generate_ai_summary(info['title'], info['writer'])
+            summary = generate_ai_summary(info['resume'], info['title'], info['writer'])
             await context.bot.send_message(
                 chat_id=update.effective_chat.id,
                 parse_mode='Markdown',
