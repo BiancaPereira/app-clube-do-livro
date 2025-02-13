@@ -12,7 +12,9 @@ def scrap_book_info(url: str) -> dict:
     Returns:
     dict: A dictionary containing the book's ASIN, title, and price.
     """
-    with webdriver.Chrome() as driver:
+    options = webdriver.ChromeOptions()
+    options.add_argument('--headless')
+    with webdriver.Chrome(options=options) as driver:
         driver.get(url)
 
         # Título
