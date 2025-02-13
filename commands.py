@@ -39,7 +39,7 @@ async def gratis(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
             await context.bot.send_message(
                 chat_id=update.effective_chat.id,
                 parse_mode='Markdown',
-                text=f"`#gratis 🆓 | **{info['title']}**\n\n📖 {summary}\n👉 {info['clean_link']}`"
+                text=f"`#gratis 🆓 | **{info['title']}**\n\n📖 {summary}\n👉 {info['clean_url']}`"
             )
         except Exception as e:
             await context.bot.send_message(
