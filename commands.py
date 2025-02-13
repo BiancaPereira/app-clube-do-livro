@@ -9,6 +9,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 async def promo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Comando /promo para gerar link de afiliado de um livro em promoção."""
+    await context.bot.send_message( chat_id=update.effective_chat.id, text="⏰ Carregando informações...")
+    
     if update.message and update.message.text:
         promo_link = update.message.text.replace('/promo ', '', 1)
         try:
@@ -28,6 +30,8 @@ async def promo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 async def gratis(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Comando /gratis para divulgar um livro grátis."""
+    await context.bot.send_message( chat_id=update.effective_chat.id, text="⏰ Carregando informações...")
+
     if update.message and update.message.text:
         promo_link = update.message.text.replace('/gratis ', '', 1)
         try:
