@@ -41,7 +41,9 @@ def scrap_book_info(url: str) -> dict:
 
         # Resumo
         try:
-            driver.find_element(By.XPATH, "//*[@class='a-expander-prompt'][contains(text(), 'Leia mais')]").click()
+            leia_mais_element = driver.find_element(By.XPATH, "//*[@class='a-expander-prompt'][contains(text(), 'Leia mais')]")
+            if leia_mais_element.is_displayed():
+                leia_mais_element.click()
             resume_element = driver.find_element(By.ID, 'bookDescription_feature_div')
             resume = resume_element.text
         except NoSuchElementException:
