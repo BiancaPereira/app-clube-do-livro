@@ -41,8 +41,8 @@ def scrap_book_info(url: str) -> dict:
 
         # Resumo
         try:
-            driver.find_element(By.CLASS_NAME, 'a-expander-prompt').click()
-            resume_element = driver.find_element(By.CLASS_NAME, 'a-expander-content')
+            driver.find_element(By.XPATH, "//*[@class='a-expander-prompt'][contains(text(), 'Leia mais')]").click()
+            resume_element = driver.find_element(By.ID, 'bookDescription_feature_div')
             resume = resume_element.text
         except NoSuchElementException:
             resume = 'Erro resumo'
@@ -61,7 +61,7 @@ def scrap_book_info(url: str) -> dict:
 
     return {'asin': asin, 'title': title, 'price': price, 'writer': writer, 'resume': resume}
 
-def generate_affiliate_link(url: str) -> str:
+def get_book_info(url: str) -> dict:
     """
     Generates an Amazon affiliate link for the given product page URL.
 
@@ -73,4 +73,4 @@ def generate_affiliate_link(url: str) -> str:
     """
     info = scrap_book_info(url)
     clean_url = f"https://www.amazon.com.br/dp/{info['asin']}?tag=biancaperei0d-20"
-    return clean_url
+    return {'asin': info['asin'], 'title': info['title'], 'price': info['price'], 'writer': info['writer'], 'resume': info['resume'], 'clean_url': clean_url}
